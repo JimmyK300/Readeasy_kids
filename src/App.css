@@ -8,7 +8,34 @@
 
 .Sidebar {
   background-color: blue;
-  width: 20vh;
+  width: 20vw;
   height: 100vh;
   color: black;
+}
+
+.OuterLessonCover {
+  display: flex;
+  height: 25vh;
+  border-radius: 15px;
+  border: 0.25pt solid black;
+  margin: 10px;
+  padding: 20px;
+}
+
+.LessonList {
+  margin: 20px;
+  padding: 20px;
+  list-style-type: none;
+}
+
+.StartButton {
+  height: 35%;
+  width: 100%;
+}
+
+.ButtonDiv {
+  display: flex;
+  width: 20%;
+  margin-left: 20pt;
+  flex-direction: column-reverse;
 }
