@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 const Quiz = () => {
   const {
-    showQuiz,
     question,
     quizs,
     checkAnswer,
@@ -12,68 +11,58 @@ const Quiz = () => {
     selectedAnswer,
     questionIndex,
     nextQuestion,
-    showTheResult,
   } = useContext(DataContext) as any;
 
   const navigate = useNavigate();
 
   return (
-    <section className="bg-dark text-white" style={{ display: "block" }}>
-      <div className="container">
-        <div className="row vh-100 align-items-center justify-content-center">
-          <div className="col-lg-8">
-            <div
-              className="card p-4"
-              style={{ background: "#3d3d3d", borderColor: "#646464" }}
-            >
-              <div className="d-flex justify-content-between gap-md-3">
-                <h5 className="mb-2 fs-normal lh-base">{question?.question}</h5>
-                <h5
-                  style={{
-                    color: "#60d600",
-                    width: "100px",
-                    textAlign: "right",
-                  }}
-                >
-                  {quizs.indexOf(question) + 1} / {quizs?.length}
-                </h5>
-              </div>
-              <div>
-                {question?.options?.map((item: any, index: any) => (
-                  <button
-                    key={index}
-                    className={`option w-100 text-start btn text-white py-2 px-3 mt-3 rounded btn-dark ${
-                      correctAnswer === item && "bg-success"
-                    }`}
-                    onClick={(event) => checkAnswer(event, item)}
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-
-              {questionIndex + 1 !== quizs.length ? (
-                <button
-                  className="btn py-2 w-100 mt-3 bg-primary text-light fw-bold"
-                  onClick={nextQuestion}
-                  disabled={!selectedAnswer}
-                >
-                  Next Question
-                </button>
-              ) : (
-                <button
-                  className="btn py-2 w-100 mt-3 bg-primary text-light fw-bold"
-                  onClick={() => navigate("../result", { relative: "route" })}
-                  disabled={!selectedAnswer}
-                >
-                  Show Result
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
+    <div className="d-flex flex-column flex-grow-1 text-center p-3 text-light align-items-center justify-content-center">
+      <div className="d-flex flex-grow-1 justify-content-between text-dark gap-md-3 align-items-center">
+        <h5 className="mb-2 fs-3 lh-base">{question?.question}</h5>
+        <h5
+          className="fs-3"
+          style={{
+            color: "#60d600",
+            width: "100px",
+            textAlign: "right",
+          }}
+        >
+          {quizs.indexOf(question) + 1} / {quizs?.length}
+        </h5>
       </div>
-    </section>
+
+      <div className="d-flex vw-100 flex-wrap flex-grow-1 justify-content-evenly">
+        {question?.options?.map((item: any, index: any) => (
+          <button
+            key={index}
+            className={`${
+              correctAnswer === item && "bg-success"
+            } answer-wrapper bg-primary-app text-light fs-4 py-2 px-3 rounded align-self-stretch btn`}
+            onClick={(event) => checkAnswer(event, item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+
+      {questionIndex + 1 !== quizs.length ? (
+        <button
+          className="bg-primary-app text-light btn py-2 w-50 mt-3 fw-bold p-5"
+          onClick={nextQuestion}
+          disabled={!selectedAnswer}
+        >
+          Next Question
+        </button>
+      ) : (
+        <button
+          className="bg-primary-app text-light btn py-2 w-50 mt-3 fw-bold p-5"
+          onClick={() => navigate("../result", { relative: "route" })}
+          disabled={!selectedAnswer}
+        >
+          Show Result
+        </button>
+      )}
+    </div>
   );
 };
 

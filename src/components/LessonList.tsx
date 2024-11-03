@@ -1,6 +1,6 @@
 import LessonButton from "./EachLesson";
 import "../App.css";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LessonList() {
   const navigate = useNavigate();
