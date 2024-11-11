@@ -18,6 +18,12 @@ const Quiz = () => {
   return (
     <div className="d-flex flex-column flex-grow-1 text-center p-3 text-light align-items-center justify-content-center">
       <div className="d-flex flex-grow-1 justify-content-between text-dark gap-md-3 align-items-center">
+        {question.image && (
+          <img
+            style={{ maxHeight: "25vh", maxWidth: "50vw" }}
+            src={question.image}
+          />
+        )}
         <h5 className="mb-2 fs-3 lh-base">{question?.question}</h5>
         <h5
           className="fs-3"

@@ -18,7 +18,7 @@ export const DataProvider = ({ children }: any) => {
 
   // Load JSON Data
   useEffect(() => {
-    fetch("/quiz.json")
+    fetch("/quiz1.json")
       .then((res) => res.json())
       .then((data) => setQuizs(data));
   }, []);
@@ -41,13 +41,13 @@ export const DataProvider = ({ children }: any) => {
     if (!selectedAnswer) {
       setCorrectAnswer(question.answer);
       setSelectedAnswer(selected);
-      console.log(
-        selected,
-        question.answer,
-        selected === question.answer,
-        event.target.classList,
-        event
-      );
+      // console.log(
+      //   selected,
+      //   question.answer,
+      //   selected === question.answer,
+      //   event.target.classList,
+      //   event
+      // );
       if (selected === question.answer) {
         event.target.classList = ["bg-success "].concat(event.target.classList);
         // event.target.classList.prepend("bg-success ");
