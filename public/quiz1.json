@@ -1,0 +1,177 @@
+[
+  {
+    "id": "01",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["mặt trăng", "mặt trời", "ngôi sao", "hành tinh"],
+    "answer": "mặt trời",
+    "image": "/quiz1_picture/Sun.jpeg"
+  },
+  {
+    "id": "02",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["cỏ", "cây", "hoa", "mặt trời"],
+    "answer": "cây",
+    "image": "/quiz1_picture/Tree.jpeg"
+  },
+  {
+    "id": "03",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["chó", "mèo", "chuột", "gà"],
+    "answer": "mèo",
+    "image": "/quiz1_picture/Cat.jpeg"
+  },
+  {
+    "id": "04",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["mèo", "chó", "khỉ", "gà"],
+    "answer": "chó",
+    "image": "/quiz1_picture/Dog.jpeg"
+  },
+  {
+    "id": "05",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["bóng", "xe", "cây", "nhà"],
+    "answer": "bóng",
+    "image": "/quiz1_picture/Ball.jpeg"
+  },
+  {
+    "id": "06",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["xe ô tô", "xe đạp", "máy bay", "thuyền"],
+    "answer": "xe đạp",
+    "image": "/quiz1_picture/Bike.jpeg"
+  },
+  {
+    "id": "07",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["sách", "báo", "tạp chí", "văn bản"],
+    "answer": "sách",
+    "image": "/quiz1_picture/Book.jpeg"
+  },
+  {
+    "id": "08",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["bàn", "ghế", "giường", "tủ"],
+    "answer": "bàn",
+    "image": "/quiz1_picture/Chair.jpeg"
+  },
+  {
+    "id": "09",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["bàn", "ghế", "thảm", "đèn"],
+    "answer": "ghế",
+    "image": "/quiz1_picture/Desk.jpeg"
+  },
+  {
+    "id": "10",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["trời xanh", "mây", "mặt trời", "mưa"],
+    "answer": "trời xanh",
+    "image": "/quiz1_picture/Sky.jpeg"
+  },
+  {
+    "id": "11",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["nước", "sữa", "trà", "cà phê"],
+    "answer": "nước",
+    "image": "/quiz1_picture/Water.jpeg"
+  },
+  {
+    "id": "12",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["đường", "bánh", "cá", "trái cây"],
+    "answer": "đường",
+    "image": "/quiz1_picture/Sugar.jpeg"
+  },
+  {
+    "id": "13",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["bánh", "sữa", "cà phê", "trà"],
+    "answer": "bánh",
+    "image": "/quiz1_picture/Cake.jpeg"
+  },
+  {
+    "id": "14",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["quả táo", "quả cam", "quả chuối", "quả xoài"],
+    "answer": "quả táo",
+    "image": "/quiz1_picture/Apple.jpeg"
+  },
+  {
+    "id": "15",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["thịt", "cá", "tôm", "mực"],
+    "answer": "cá",
+    "image": "/quiz1_picture/Fish.jpeg"
+  },
+  {
+    "id": "16",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["gà", "vịt", "ngỗng", "bò"],
+    "answer": "gà",
+    "image": "/quiz1_picture/Chicken.jpeg"
+  },
+  {
+    "id": "17",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["trái đất", "mặt trăng", "ngôi sao", "hành tinh"],
+    "answer": "trái đất",
+    "image": "/quiz1_picture/Earth.jpeg"
+  },
+  {
+    "id": "18",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["mặt trời", "đám mây", "cơn bão", "mưa"],
+    "answer": "đám mây",
+    "image": "/quiz1_picture/Cloud.jpeg"
+  },
+  {
+    "id": "19",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["ngôi nhà", "căn hộ", "khách sạn", "biệt thự"],
+    "answer": "ngôi nhà",
+    "image": "/quiz1_picture/House.jpeg"
+  },
+  {
+    "id": "20",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["bướm", "ruồi", "ong", "mũi"],
+    "answer": "bướm",
+    "image": "/quiz1_picture/Butterfly.jpeg"
+  },
+  {
+    "id": "21",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["bánh", "kẹo", "bánh ngọt", "bánh quy"],
+    "answer": "kẹo",
+    "image": "/quiz1_picture/Candy.jpeg"
+  },
+  {
+    "id": "22",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["đồng hồ", "bàn", "ghế", "tủ"],
+    "answer": "đồng hồ",
+    "image": "/quiz1_picture/Clock.jpeg"
+  },
+  {
+    "id": "23",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["cục đá", "cục đất", "cục gỗ", "cục sắt"],
+    "answer": "cục đá",
+    "image": "/quiz1_picture/Rock.jpeg"
+  },
+  {
+    "id": "24",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["búp bê", "đồ chơi", "sách", "bánh"],
+    "answer": "búp bê",
+    "image": "/quiz1_picture/Doll.jpeg"
+  },
+  {
+    "id": "25",
+    "question": "Chọn từ đúng với hình sau",
+    "options": ["bông hoa", "bông gạo", "bông lau", "bông sen"],
+    "answer": "bông hoa",
+    "image": "/quiz1_picture/Flower.jpeg"
+  }
+]

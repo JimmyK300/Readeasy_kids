@@ -7,7 +7,6 @@ import { IconContext } from "react-icons";
 import { app } from "../Firebase/firebase.ts";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "../App.css";
-import "bootstrap/dist/css/bootstrap.css";
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
@@ -38,42 +37,45 @@ function Navbar() {
 
   return (
     <>
-      <IconContext.Provider value={{ color: "#fff" }}>
-        <div className="navbar">
-          <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-          <div>
-            <button
-              className="btn sign-out-button"
-              onClick={HandleSignOutButtonClick}
-            >
-              Sign out
-            </button>
-          </div>
-        </div>
-        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-          <ul className="nav-menu-items" onClick={showSidebar}>
-            <li className="navbar-toggle">
+      <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
+        <header>
+          <IconContext.Provider value={{ color: "#fff" }}>
+            <div className="navbar">
               <Link to="#" className="menu-bars">
-                <AiIcons.AiOutlineClose />
+                <FaIcons.FaBars onClick={showSidebar} />
               </Link>
-            </li>
-            {SidebarData.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
+              <div>
+                <button
+                  className="btn sign-out-button"
+                  onClick={HandleSignOutButtonClick}
+                >
+                  Sign out
+                </button>
+              </div>
+            </div>
+            <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+              <ul className="nav-menu-items" onClick={showSidebar}>
+                <li className="navbar-toggle">
+                  <Link to="#" className="menu-bars">
+                    <AiIcons.AiOutlineClose />
                   </Link>
                 </li>
-              );
-            })}
-          </ul>
-        </nav>
-      </IconContext.Provider>
-
-      <Outlet />
+                {SidebarData.map((item, index) => {
+                  return (
+                    <li key={index} className={item.cName}>
+                      <Link to={item.path}>
+                        {item.icon}
+                        <span>{item.title}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          </IconContext.Provider>
+        </header>
+        <Outlet />
+      </div>
     </>
   );
 }
