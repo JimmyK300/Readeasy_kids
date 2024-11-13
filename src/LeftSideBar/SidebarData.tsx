@@ -6,13 +6,13 @@ import { RiAccountCircleFill } from "react-icons/ri";
 export const SidebarData = [
   {
     title: "Home",
-    path: "/home",
+    path: "/",
     icon: <AiIcons.AiFillHome size={30} />,
     cName: "nav-text",
   },
   {
-    title: "Reports",
-    path: "/reports",
+    title: "Lessons",
+    path: "/Lessons",
     icon: <IoIcons.IoIosPaper size={30} />,
     cName: "nav-text",
   },

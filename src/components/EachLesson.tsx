@@ -11,10 +11,7 @@ const LessonButton = ({ lessonNumber = "Lesson 0", onClick }: Props) => {
       {/* <Image></Image> */}
       <div style={{ font: "30px bold", flexGrow: "1" }}>{lessonNumber}</div>
       <div className="ButtonDiv">
-        <button
-          className="btn btn-outline-success btn-lg StartButton"
-          onClick={onClick}
-        >
+        <button className="StartButton" onClick={onClick}>
           Start
         </button>
       </div>

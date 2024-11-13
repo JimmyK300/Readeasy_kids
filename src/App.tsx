@@ -12,11 +12,9 @@ import {
 // import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router";
 // import { app } from "./Firebase/firebase";
-import Quiz1 from "./Quizs/Quiz1";
 import { useContext } from "react";
 import Navbar from "./LeftSideBar/Navbar";
 import Home from "./pages/Home";
-import Reports from "./pages/Reports";
 import Login from "./pages/Login";
 import TestPage from "./pages/TestPage";
 import { DataProvider } from "./context/dataContext";
@@ -24,17 +22,18 @@ import Start from "./components/Start";
 import Quiz from "./components/Quiz";
 import Result from "./components/Result";
 import QuizLayout from "./Quizs/QuizLayout";
+import Lesson from "./pages/Lesson";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Navbar />}>
-      <Route path="/home" element={<Home />}>
+      <Route path="/" element={<Home />}>
         <Route path="start" element={<Start />} />
         <Route path="quiz" element={<Quiz />} />
         <Route path="result" element={<Result />} />
       </Route>
       <Route path="login" element={<Login />} />
-      <Route path="reports" element={<Reports />} />
+      <Route path="Lessons" element={<Lesson />} />
       <Route path="testpage" element={<TestPage />} />
       <Route path="quiz" element={<QuizLayout />}>
         <Route index Component={Start} />
