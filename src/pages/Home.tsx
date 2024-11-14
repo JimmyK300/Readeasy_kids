@@ -54,7 +54,9 @@ function Home() {
               <img src="images/fox.png" alt="Bài học đọc hiểu" />
               <h2>Bài học đọc hiểu</h2>
               <p>Các bài học thú vị và bổ ích đang chờ các bạn!</p>
-              <button className="btn">Bài học đọc hiểu</button>
+              <button className="btn" onClick={() => navigate("/lessons")}>
+                Bài học đọc hiểu
+              </button>
             </div>
           </div>
           <div className="cards align-items-center">

@@ -33,7 +33,7 @@ const router = createBrowserRouter(
         <Route path="result" element={<Result />} />
       </Route>
       <Route path="login" element={<Login />} />
-      <Route path="Lessons" element={<Lesson />} />
+      <Route path="lessons" element={<Lesson />} />
       <Route path="testpage" element={<TestPage />} />
       <Route path="quiz" element={<QuizLayout />}>
         <Route index Component={Start} />
