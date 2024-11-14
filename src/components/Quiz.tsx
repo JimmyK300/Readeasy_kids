@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import DataContext from "../context/dataContext";
 import { useNavigate } from "react-router-dom";
+import { FaVolumeUp } from "react-icons/fa";
 
 const Quiz = () => {
   const {
@@ -23,6 +24,22 @@ const Quiz = () => {
             style={{ maxHeight: "25vh", maxWidth: "50vw" }}
             src={question.image}
           />
+        )}
+        {question.audio && (
+          <button
+            className="btn btn-secondary align-items-center justify-content-center p-4"
+            style={{
+              maxHeight: "25vh",
+              maxWidth: "50vw",
+              borderRadius: "15pt",
+            }}
+            onClick={() => {
+              const mySound = new Audio(question.audio);
+              mySound.play();
+            }}
+          >
+            <FaVolumeUp className="align-self-center" size={"50%"} />
+          </button>
         )}
         <h5 className="mb-2 fs-3 lh-base">{question?.question}</h5>
         <h5

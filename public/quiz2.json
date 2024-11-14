@@ -1,0 +1,177 @@
+[
+  {
+    "id": "01",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Món", "Đường", "Gàu", "Hạt"],
+    "answer": "Món",
+    "audio": "/quiz2_audio/Recording-1.mp3"
+  },
+  {
+    "id": "02",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Vàng", "Khu", "Bầu", "Bông"],
+    "answer": "Bông",
+    "audio": "/quiz2_audio/Recording-2.mp3"
+  },
+  {
+    "id": "03",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Của", "Nón", "Món", "Khu"],
+    "answer": "Nón",
+    "audio": "/quiz2_audio/Recording-3.mp3"
+  },
+  {
+    "id": "04",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Bầu", "Nón", "Mắm", "Củ"],
+    "answer": "Củ",
+    "audio": "/quiz2_audio/Recording-4.mp3"
+  },
+  {
+    "id": "05",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Sò", "Hạt", "Xôi", "Cá"],
+    "answer": "Xôi",
+    "audio": "/quiz2_audio/Recording-5.mp3"
+  },
+  {
+    "id": "06",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Nón", "Bầu", "Gió", "Cá"],
+    "answer": "Cá",
+    "audio": "/quiz2_audio/Recording-6.mp3"
+  },
+  {
+    "id": "07",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Cánh", "Của", "Sò", "Sữa"],
+    "answer": "Sò",
+    "audio": "/quiz2_audio/Recording-7.mp3"
+  },
+  {
+    "id": "08",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Bánh", "Hạt", "Củ", "Bầu"],
+    "answer": "Bánh",
+    "audio": "/quiz2_audio/Recording-8.mp3"
+  },
+  {
+    "id": "09",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Hạt", "Mũ", "Bầu", "Sữa"],
+    "answer": "Hạt",
+    "audio": "/quiz2_audio/Recording-9.mp3"
+  },
+  {
+    "id": "10",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Đá", "Đường", "Trứng", "Sò"],
+    "answer": "Đá",
+    "audio": "/quiz2_audio/Recording-10.mp3"
+  },
+  {
+    "id": "11",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Cánh", "Mắm", "Mũ", "Gió"],
+    "answer": "Gió",
+    "audio": "/quiz2_audio/Recording-11.mp3"
+  },
+  {
+    "id": "12",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Vàng", "Mắm", "Cánh", "Đường"],
+    "answer": "Vàng",
+    "audio": "/quiz2_audio/Recording-12.mp3"
+  },
+  {
+    "id": "13",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Cánh", "Đá", "Sữa", "Xôi"],
+    "answer": "Sữa",
+    "audio": "/quiz2_audio/Recording-13.mp3"
+  },
+  {
+    "id": "14",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Bông", "Trứng", "Sữa", "Xôi"],
+    "answer": "Trứng",
+    "audio": "/quiz2_audio/Recording-14.mp3"
+  },
+  {
+    "id": "15",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Củ", "Lá", "Xôi", "Cánh"],
+    "answer": "Cánh",
+    "audio": "/quiz2_audio/Recording-15.mp3"
+  },
+  {
+    "id": "16",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Xôi", "Lá", "Trứng", "Củ"],
+    "answer": "Lá",
+    "audio": "/quiz2_audio/Recording-16.mp3"
+  },
+  {
+    "id": "17",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Vàng", "Hạt", "Bầu", "Bánh"],
+    "answer": "Bầu",
+    "audio": "/quiz2_audio/Recording-17.mp3"
+  },
+  {
+    "id": "18",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Của", "Sữa", "Báo", "Củ"],
+    "answer": "Báo",
+    "audio": "/quiz2_audio/Recording-18.mp3"
+  },
+  {
+    "id": "19",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Xôi", "Khu", "Gió", "Đá"],
+    "answer": "Khu",
+    "audio": "/quiz2_audio/Recording-19.mp3"
+  },
+  {
+    "id": "20",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Hạt", "Đá", "Của", "Sò"],
+    "answer": "Của",
+    "audio": "/quiz2_audio/Recording-20.mp3"
+  },
+  {
+    "id": "21",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Khu", "Lá", "Đường", "Bánh"],
+    "answer": "Đường",
+    "audio": "/quiz2_audio/Recording-21.mp3"
+  },
+  {
+    "id": "22",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Xôi", "Đường", "Cánh", "Mũ"],
+    "answer": "Mũ",
+    "audio": "/quiz2_audio/Recording-22.mp3"
+  },
+  {
+    "id": "23",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Xôi", "Mắm", "Dép", "Gió"],
+    "answer": "Mắm",
+    "audio": "/quiz2_audio/Recording-23.mp3"
+  },
+  {
+    "id": "24",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Mũ", "Đường", "Gàu", "Đá"],
+    "answer": "Gàu",
+    "audio": "/quiz2_audio/Recording-24.mp3"
+  },
+  {
+    "id": "25",
+    "question": "Chọn từ đúng với âm thanh sau",
+    "options": ["Cá", "Nón", "Dép", "Sò"],
+    "answer": "Dép",
+    "audio": "/quiz2_audio/Recording-25.mp3"
+  }
+]

@@ -10,6 +10,8 @@ export const DataProvider = ({ children }: any) => {
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [marks, setMarks] = useState(0);
+  const [url, setUrl] = useState("");
+  const [title, setTitle] = useState("");
 
   // Display Controlling States
   const [showStart, setShowStart] = useState(false);
@@ -18,10 +20,10 @@ export const DataProvider = ({ children }: any) => {
 
   // Load JSON Data
   useEffect(() => {
-    fetch("/quiz1.json")
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setQuizs(data));
-  }, []);
+  }, [url]);
 
   // Set a Single Question
   useEffect(() => {
@@ -29,6 +31,10 @@ export const DataProvider = ({ children }: any) => {
       setQuesion(quizs[questionIndex]);
     }
   }, [quizs, questionIndex]);
+
+  const updateUrl = (newUrl: string) => {
+    setUrl(newUrl);
+  };
 
   // Start Quiz
   const startQuiz = () => {
@@ -108,6 +114,10 @@ export const DataProvider = ({ children }: any) => {
         showResult,
         marks,
         startOver,
+        url,
+        setUrl,
+        updateUrl,
+        title, setTitle
       }}
     >
       {children}

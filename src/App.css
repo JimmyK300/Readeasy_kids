@@ -3,6 +3,11 @@
   --hover-color: #4b1d6b;
   --hover-text-color: #ffd700;
 }
+
+/* * {
+  font-family:  ;
+} */
+
 .App {
   margin: 0;
   padding: 0;
