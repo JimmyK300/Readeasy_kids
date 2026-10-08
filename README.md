@@ -4,6 +4,12 @@ An aspirational Vietnamese learning platform for children who struggle with read
 
 The existing React 18 / TypeScript / Vite architecture, React Router, context providers, purple identity, and original fox/cat assets are retained. The app now has seven Vietnamese reading lessons and a real guardian account service. Sample interactions are not learner outcome metrics.
 
+## GitHub Pages deployment
+
+The `.github/workflows/pages.yml` workflow tests, builds, and deploys `main` or `codex/readeasy-presentation` to **https://readeasy.pswork.dev/**. GitHub Pages must use the GitHub Actions publishing source. The workflow reads Pages metadata for the asset base, so both a custom subdomain and a repository URL work.
+
+Set the six public `VITE_FIREBASE_*` repository variables from `.env.example` (the four required fields must be populated). No Firebase Admin credential or server API key belongs in GitHub variables or the frontend. Firebase continues to provide authentication and saved progress; Pages hosts only the frontend. Add the deployed domain to the Firebase Auth authorized domain list. The `github-pages` environment permits the two deployment branches.
+
 ## Learning and accounts
 
 - Seven distinct stories, two suggested reading levels, three suggested practice stages, and 21 comprehension questions. See [content provenance](CONTENT-NOTES.md). Every question has a manually reviewed answer, explanation, and supporting story sentence.
