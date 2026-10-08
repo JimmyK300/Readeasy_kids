@@ -29,7 +29,7 @@ export default function LessonList({ items = lessons }: { items?: Lesson[] }) {
             </span>
             <span className="lesson-status">
               {progress[lesson.id]
-                ? "Đã hoàn thành"
+                ? `Đã hoàn thành · ${progress[lesson.id].score}/3 câu đúng`
                 : attempts[lesson.id]?.answers.length
                   ? "Đang đọc"
                   : "Sẵn sàng để đọc"}

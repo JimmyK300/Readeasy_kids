@@ -6,8 +6,10 @@ The existing React 18 / TypeScript / Vite architecture, React Router, context pr
 
 ## Learning and accounts
 
-- Seven distinct stories, two suggested reading levels, and 21 comprehension questions. See [content provenance](CONTENT-NOTES.md). Every question has a manually reviewed answer, explanation, and supporting story sentence.
+- Seven distinct stories, two suggested reading levels, three suggested practice stages, and 21 comprehension questions. See [content provenance](CONTENT-NOTES.md). Every question has a manually reviewed answer, explanation, and supporting story sentence.
 - No-account entry remains available. Read → answer → feedback with highlighted evidence → score and review → next lesson or reset. Attempts resume while navigating within the same page session.
+- `/lessons` organizes an open path: find details → follow events → understand reasons. Every lesson offers optional original sentence-order practice; the reading hint points to a supporting sentence without selecting an answer. Home suggests unfinished session work, supported rereading after 0–1 correct answers, then the next unread story. These suggestions do not lock lessons or imply mastery.
+- `/guardian` shows current-account completed scores or explicitly labeled session-only results, completion/revisit filters, a next-story suggestion, and reading support for adults. It is a shared-account view, without child profiles, class roster or teacher permissions. Account reports wait for data and expose load failures.
 - Large text, line spacing, keyboard focus, skip link, reduced motion, responsive layout.
 - Real `/signup`, `/login`, `/account` hash routes: guardian email/password signup, login, logout, and explicitly requested reset email through Firebase Authentication. Passwords are never stored by application code.
 - Completed lesson scores save to Firestore and recover after sign-in/reload. Demo progress and unfinished attempts live only in memory. Auth changes clear the prior session's attempts; demo completions do not silently become account data.
@@ -42,7 +44,7 @@ The app uses only `readingUsers/{authenticatedUid}/progress/{lessonId}`. Each do
 
 ## Verification
 
-Fifteen Vitest tests cover content/evidence keys, progress validation, SDK account boundaries/errors, answer gating, incorrect scoring, reset, next lesson. The emulator rule test is opt-in with `FIRESTORE_EMULATOR_HOST` and skipped in the normal run. Initial live SDK QA verified sixteen checks for signup, login/logout, save/read/resume, other UID/anonymous denial, invalid-schema denial. A second sixteen-check live REST run confirmed the deployed access rules and persistence after dependency patching. Actual browser SDK signup, logout, failed/successful login and saved-score recovery were also verified. All disposable QA documents/accounts were deleted.
+Nineteen Vitest tests cover content/evidence keys, progress validation, SDK account boundaries/errors, answer gating, incorrect scoring, reset, next lesson, stage coverage, sentence-order correction/reset, recommendations and truthful guardian filters. The emulator rule test is opt-in with `FIRESTORE_EMULATOR_HOST` and skipped in the normal run. Initial live SDK QA verified sixteen checks for signup, login/logout, save/read/resume, other UID/anonymous denial, invalid-schema denial. A second sixteen-check live REST run confirmed the deployed access rules and persistence after dependency patching. Actual browser SDK signup, logout, failed/successful login and saved-score recovery were also verified. All disposable QA documents/accounts were deleted.
 
 `node scripts/verify-live.mjs` repeats authorized disposable QA using native REST and writes a credential-free receipt. The browser app uses Firebase's modular SDK; native REST avoids an old SDK transport incompatibility with Node 24. Only run this script against a project where disposable account creation/deletion is authorized.
 
@@ -50,7 +52,7 @@ Root and embedded builds, lint, actual Chrome exercise/account/responsive checks
 
 ## Limits
 
-Founder prototype, not a standardized curriculum, diagnostic assessment, or clinically evaluated intervention. No narration, AI tutor, educator dashboard, verified-email gating, multi-child profiles, guardian consent/legal workflow, or cloud resume of unfinished questions. Latest completed score is saved per lesson, not a longitudinal assessment or best-score record. Production privacy, retention, account deletion, email delivery, educator/user evaluation, original-art licensing review need dedicated work. Reset email wiring is implemented but no email was sent in QA.
+Founder prototype, not a standardized curriculum, diagnostic assessment, or clinically evaluated intervention. No narration, AI tutor, class dashboard, verified-email gating, multi-child profiles, guardian consent/legal workflow, or cloud resume of unfinished questions. Latest completed score is saved per lesson, not a longitudinal assessment or best-score record. Production privacy, retention, account deletion, email delivery, educator/user evaluation, original-art licensing review need dedicated work. Reset email wiring is implemented but no email was sent in QA.
 
 Unused Bootstrap and FirebaseUI dependencies were removed and compatible dependency fixes applied. The retained Firebase 10 stack still has npm audit findings: 13 production advisories (8 moderate, 5 high, no critical) at handoff. These are recorded in the evidence folder; a broader dependency migration remains separate work. Build output warns about the Firebase-inclusive JavaScript chunk size.
 

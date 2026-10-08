@@ -3,6 +3,7 @@ import { FiCheck, FiArrowRight, FiRefreshCw } from "react-icons/fi";
 import { useLearning } from "../context/dataContext";
 import { lessons, findLesson, firstLesson } from "../content/lessons";
 import { useAccount } from "../context/authContext";
+import { stageFor } from "../content/journey";
 export default function Result() {
   const { lessonId } = useParams();
   const lesson = findLesson(lessonId ?? firstLesson.id);
@@ -53,6 +54,7 @@ export default function Result() {
             </div>
           ))}
         </div>
+        <div className="next-step result-next"><h2>{score < 3 ? "Cùng đọc lại những câu cần chú ý" : "Sẵn sàng cho một bước nhỏ nữa"}</h2><p>{score < 3 ? stageFor(lesson.id).support : nextLesson ? `${nextLesson.title}: ${stageFor(nextLesson.id).goal}` : "Em đã đọc hết bảy câu chuyện. Em có thể chọn bài yêu thích để đọc lại."}</p></div>
         <div className="result-actions">
           <button
             className="button primary"
@@ -91,6 +93,7 @@ export default function Result() {
             Tạo tài khoản
           </Link>
         )}
+        <Link className="text-link" to="/guardian">Cùng người lớn xem tiến độ <FiArrowRight /></Link>
         <p className="quiet-note">
           Kết quả luyện đọc không dùng để chẩn đoán hay đánh giá chứng khó đọc.
         </p>

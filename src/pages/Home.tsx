@@ -8,14 +8,15 @@ import {
   FiHeart,
 } from "react-icons/fi";
 import { useLearning } from "../context/dataContext";
-import LessonList from "../components/LessonList";
-import { firstLesson, lessons } from "../content/lessons";
+import { lessons } from "../content/lessons";
 import { useAccount } from "../context/authContext";
+import { stages, suggestLesson, stageFor } from "../content/journey";
 export default function Home() {
-  const { progress } = useLearning();
+  const { progress, attempts } = useLearning();
+  const suggestion = suggestLesson(progress, attempts);
+  const recommended = suggestion.lesson;
   const { user } = useAccount();
   const count = Object.keys(progress).length;
-  const completed = !!progress[firstLesson.id];
   return (
     <div className="home-content">
       <div className="page-heading">
@@ -40,21 +41,18 @@ export default function Home() {
       </div>
       <section className="hero-panel" aria-labelledby="hero-title">
         <div className="hero-copy">
-          <span className="lesson-tag">Bài đọc hôm nay</span>
+          <span className="lesson-tag">{stageFor(recommended.id).title}</span>
           <h2 id="hero-title">
-            Một khu vườn nhỏ.
-            <br />
-            Một điều tốt đẹp.
+            {recommended.title}
           </h2>
           <p>
-            Cùng bạn Cáo đọc câu chuyện về An,
-            <br className="desktop-break" /> rồi khám phá những điều em hiểu.
+            {suggestion.reason}
           </p>
-          <Link className="button primary" to={`/learn/${firstLesson.id}`}>
-            {completed ? "Đọc lại câu chuyện" : "Bắt đầu đọc"} <FiArrowRight />
+          <Link className="button primary" to={`/learn/${recommended.id}`}>
+            {suggestion.action} <FiArrowRight />
           </Link>
           <span className="hero-meta">
-            <FiBookOpen /> 5 câu ngắn <span>•</span> 3 câu hỏi <span>•</span>{" "}
+            <FiBookOpen /> {recommended.story.length} câu ngắn <span>•</span> 3 câu hỏi <span>•</span>{" "}
             Khoảng 5 phút
           </span>
         </div>
@@ -79,7 +77,7 @@ export default function Home() {
               Xem bài học <FiArrowRight />
             </Link>
           </div>
-          <LessonList items={lessons.slice(0, 2)} />
+          <div className="stage-preview">{stages.map((stage, index) => <Link to="/lessons" key={stage.id}><span>{index + 1}</span><div><strong>{stage.title}</strong><small>{stage.ids.filter(id => progress[id]).length}/{stage.ids.length} bài hoàn thành</small></div><FiArrowRight /></Link>)}</div>
         </section>
         <aside className="progress-panel">
           <span className="progress-icon">
@@ -104,6 +102,7 @@ export default function Home() {
             <FiSliders />
             <span>Em có thể tăng cỡ chữ và giãn dòng khi đọc.</span>
           </div>
+          <Link className="text-link" to="/guardian">Cùng người lớn nhìn lại <FiArrowRight /></Link>
         </aside>
       </div>
       <section className="founder-note">

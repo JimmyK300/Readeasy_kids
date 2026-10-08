@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { FiArrowLeft, FiArrowRight, FiCheck, FiBookOpen } from "react-icons/fi";
 import { useLearning } from "../context/dataContext";
@@ -9,6 +9,8 @@ export default function Quiz() {
   const state = useLearning(lesson?.id);
   const { questions, story } = state.lesson;
   const navigate = useNavigate();
+  const [hintKey, setHintKey] = useState("");
+  const activeHint = hintKey === `${lesson?.id}-${state.questionIndex}`;
   const questionRef = useRef<HTMLHeadingElement>(null);
   const question = questions[state.questionIndex];
   const isCorrect = state.selectedAnswer === question.answer;
@@ -59,7 +61,7 @@ export default function Quiz() {
             {story.map((line, index) => (
               <p
                 className={
-                  state.selectedAnswer && question.line === index
+                  (state.selectedAnswer || activeHint) && question.line === index
                     ? "evidence-line"
                     : ""
                 }
@@ -88,6 +90,7 @@ export default function Quiz() {
           <h2 id="question-title" ref={questionRef} tabIndex={-1}>
             {question.question}
           </h2>
+          {!state.selectedAnswer && <div className="hint-control"><button className="restart-link" aria-pressed={activeHint} onClick={() => setHintKey(activeHint ? "" : `${lesson.id}-${state.questionIndex}`)}>Gợi ý tìm câu</button>{activeHint && <p role="status">Câu {question.line + 1} được tô sáng. Đọc lại câu đó rồi tự chọn đáp án nhé.</p>}</div>}
           <div className="answer-options">
             {question.options.map((answer, index) => (
               <button

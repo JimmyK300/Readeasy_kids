@@ -34,6 +34,7 @@ export default function Navbar() {
           <NavLink to="/lessons">
             <FiBookOpen /> Bài học của em
           </NavLink>
+          <NavLink to="/guardian"><FiHeart /> Góc đồng hành</NavLink>
           <NavLink to={user ? "/account" : "/signup"}>
             <FiUser /> {user ? "Tài khoản" : "Tạo tài khoản"}
           </NavLink>

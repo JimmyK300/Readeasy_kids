@@ -9,6 +9,7 @@ import Result from "./components/Result";
 import { DataProvider } from "./context/dataContext";
 import { AccountProvider } from "./context/authContext";
 import Account from "./pages/Account";
+import Guardian from "./pages/Guardian";
 export default function App() {
   return (
     <AccountProvider>
@@ -18,6 +19,7 @@ export default function App() {
             <Route element={<Navbar />}>
               <Route path="/" element={<Home />} />
               <Route path="/lessons" element={<Lesson />} />
+              <Route path="/guardian" element={<Guardian />} />
               <Route path="/account" element={<Account />} />
               <Route path="/signup" element={<Account mode="signup" />} />
               <Route path="/login" element={<Account mode="login" />} />

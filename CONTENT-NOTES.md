@@ -17,3 +17,11 @@ Five-sentence beginning and six-sentence longer stories each have three question
 Original chair/desk picture keys were swapped; those pictures are excluded. Listening recordings were not sufficiently verified for this reading scope, so no audio keys/media are presented as validated exercises. Legacy English React quizzes, random facts and incomplete activities are excluded from navigation/build entrypoints. Historical material remains source for audit; only mascot/favicon whitelist ships.
 
 Everyday home, friendship and nature contexts allow rereading without a timer. Vietnamese educator and intended-learner review remains necessary before production.
+
+## Staged practice extension
+
+The seven reviewed stories and all 21 comprehension keys are unchanged. Three open stages emphasize details (An, Mèo), event tracking (Sách, Bữa sáng, Bóng), and reasons (Nón, Mưa); these are dominant practice goals, not exclusive skills or measured mastery levels.
+
+Optional sentence-order warmups quote two exact sentences from the corresponding original story. Manually checked zero-based source line pairs: An 0→3 (go to garden→water); Mèo 3→4 (place water→cat drinks); Sách 0→3 (read→put book down); Bữa sáng 0→4 (wash hands→carry cup after eating); Bóng 4→5 (hold ball for shoelace→play again); Nón 2→3 (see hat→hand it over); Mưa 0→2 (rain stops→step outside). Feedback shows both source sentences in order. Practice is optional, unscored and unsaved. Automated tests check source coverage and line bounds; chronology was manually reviewed, not inferred from tests alone.
+
+Hints highlight the existing reviewed evidence sentence; answer choices and saved scores remain unchanged. Guardian reports cannot infer which questions were missed because the backend only stores the latest total score.

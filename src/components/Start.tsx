@@ -8,6 +8,8 @@ import {
   FiMessageCircle,
 } from "react-icons/fi";
 import { useLearning } from "../context/dataContext";
+import ReadingPractice from "./ReadingPractice";
+import { stageFor } from "../content/journey";
 export default function Start() {
   const { lessonId } = useParams();
   const lesson = findLesson(lessonId ?? firstLesson.id);
@@ -32,6 +34,7 @@ export default function Start() {
           </span>
           <h1>{lesson.title}</h1>
           <p className="start-intro">{lesson.summary}</p>
+          <p className="reading-goal"><strong>{stageFor(lesson.id).title}</strong> · {stageFor(lesson.id).goal}</p>
           <ul className="instruction-list">
             <li>
               <FiBookOpen />
@@ -72,6 +75,7 @@ export default function Start() {
           </p>
         </div>
       </section>
+      <ReadingPractice key={lesson.id} lesson={lesson} />
     </div>
   );
 }
