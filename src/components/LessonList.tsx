@@ -1,61 +1,29 @@
-import LessonButton from "./EachLesson";
-import "../App.css";
-import { useNavigate } from "react-router-dom";
-import DataContext from "../context/dataContext";
-import { useContext } from "react";
-
-function LessonList() {
-  const navigate = useNavigate();
-  const { setUrl, setTitle } = useContext(DataContext) as any;
-
+import { Link } from "react-router-dom";
+import { FiArrowRight, FiBookOpen, FiCheck } from "react-icons/fi";
+import { useLearning } from "../context/dataContext";
+export default function LessonList() {
+  const { completed } = useLearning();
   return (
-    <ul className="LessonList justify-content-center">
-      <li>
-        <LessonButton
-          lessonNumber="Nhiều lựa chọn"
-          onClick={() => {
-            setUrl("/quiz1.json");
-            setTitle("Bài 1");
-            navigate("/quiz");
-          }}
-        />
-      </li>
-      <li>
-        <LessonButton
-          lessonNumber="Âm thanh nhiều lựa chọn"
-          onClick={() => {
-            setUrl("/quiz2.json");
-            setTitle("Bài 2");
-            navigate("/quiz");
-          }}
-        />
-      </li>
-      <li>
-        <LessonButton
-          lessonNumber="Lesson 3"
-          onClick={() => console.log("Clicked")}
-        />
-      </li>
-      <li>
-        <LessonButton
-          lessonNumber="Lesson 4"
-          onClick={() => console.log("Clicked")}
-        />
-      </li>
-      <li>
-        <LessonButton
-          lessonNumber="Lesson 5"
-          onClick={() => console.log("Clicked")}
-        />
-      </li>
-      <li>
-        <LessonButton
-          lessonNumber="Lesson 6"
-          onClick={() => console.log("Clicked")}
-        />
-      </li>
-    </ul>
+    <Link to="/quiz" className="lesson-card">
+      <div className="lesson-illustration" aria-hidden="true">
+        <span className="plant-pot" />
+        <span className="plant-stem" />
+        <span className="plant-leaf plant-left" />
+        <span className="plant-leaf plant-right" />
+        <span className="plant-fruit" />
+        <span className="plant-spark">✧</span>
+      </div>
+      <div className="lesson-card-copy">
+        <span className="lesson-type">Đọc hiểu · Bài mẫu</span>
+        <h3>An và khu vườn</h3>
+        <p>Đọc chậm, tìm ý, hiểu câu chuyện.</p>
+        <span className="lesson-card-meta">
+          <FiBookOpen /> 5 câu ngắn <span>•</span> 3 câu hỏi
+        </span>
+      </div>
+      <span className="lesson-arrow">
+        {completed ? <FiCheck /> : <FiArrowRight />}
+      </span>
+    </Link>
   );
 }
-
-export default LessonList;

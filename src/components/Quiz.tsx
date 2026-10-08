@@ -1,92 +1,132 @@
-import { useContext } from "react";
-import DataContext from "../context/dataContext";
-import { useNavigate } from "react-router-dom";
-import { FaVolumeUp } from "react-icons/fa";
-
-const Quiz = () => {
-  const {
-    question,
-    quizs,
-    checkAnswer,
-    correctAnswer,
-    selectedAnswer,
-    questionIndex,
-    nextQuestion,
-  } = useContext(DataContext) as any;
-
+import { useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FiArrowLeft, FiArrowRight, FiCheck, FiBookOpen } from "react-icons/fi";
+import { useLearning, questions, story } from "../context/dataContext";
+export default function Quiz() {
+  const state = useLearning();
   const navigate = useNavigate();
-
+  const questionRef = useRef<HTMLHeadingElement>(null);
+  const question = questions[state.questionIndex];
+  const isCorrect = state.selectedAnswer === question.answer;
+  useEffect(() => {
+    questionRef.current?.focus({ preventScroll: state.questionIndex === 0 });
+  }, [state.questionIndex]);
   return (
-    <div className="d-flex flex-column flex-grow-1 text-center p-3 text-light align-items-center justify-content-center">
-      <div className="d-flex flex-grow-1 justify-content-between text-dark gap-md-3 align-items-center">
-        {question.image && (
-          <img
-            style={{ maxHeight: "25vh", maxWidth: "50vw" }}
-            src={question.image}
-          />
-        )}
-        {question.audio && (
+    <div className="exercise-page">
+      <div className="exercise-top">
+        <Link to="/lessons" className="back-link">
+          <FiArrowLeft /> Bài học của em
+        </Link>
+        <span className="lesson-type">Bài mẫu · Không giới hạn thời gian</span>
+      </div>
+      <div className="exercise-title">
+        <h1>An và khu vườn</h1>
+        <p>Đọc câu chuyện, rồi chọn một câu trả lời.</p>
+      </div>
+      <div className="reading-layout">
+        <section className="reading-panel" aria-labelledby="story-title">
+          <div className="reading-toolbar">
+            <h2 id="story-title">
+              <FiBookOpen /> Câu chuyện
+            </h2>
+            <div className="reading-controls">
+              <button
+                aria-pressed={state.largeText}
+                onClick={() => state.setLargeText(!state.largeText)}
+              >
+                Aa <span>Chữ lớn</span>
+              </button>
+              <button
+                aria-pressed={state.spacedText}
+                onClick={() => state.setSpacedText(!state.spacedText)}
+              >
+                <span>↕</span> Giãn dòng
+              </button>
+            </div>
+          </div>
+          <div
+            className={`story-text ${state.largeText ? "large-text" : ""} ${state.spacedText ? "spaced-text" : ""}`}
+          >
+            {story.map((line, index) => (
+              <p
+                className={
+                  state.selectedAnswer && question.line === index
+                    ? "evidence-line"
+                    : ""
+                }
+                key={line}
+              >
+                {line}
+              </p>
+            ))}
+          </div>
+          <p className="story-hint">Em có thể đọc lại để tìm câu trả lời.</p>
+        </section>
+        <section className="question-panel" aria-labelledby="question-title">
+          <div className="question-progress">
+            <span>
+              Câu hỏi {state.questionIndex + 1} / {questions.length}
+            </span>
+            <div>
+              {questions.map((_, index) => (
+                <span
+                  key={index}
+                  className={index <= state.questionIndex ? "filled" : ""}
+                />
+              ))}
+            </div>
+          </div>
+          <h2 id="question-title" ref={questionRef} tabIndex={-1}>
+            {question.question}
+          </h2>
+          <div className="answer-options">
+            {question.options.map((answer, index) => (
+              <button
+                key={answer}
+                disabled={!!state.selectedAnswer}
+                className={`answer-option ${state.selectedAnswer === answer ? (isCorrect ? "correct" : "selected-wrong") : ""} ${state.selectedAnswer && answer === question.answer ? "correct" : ""}`}
+                onClick={() => state.chooseAnswer(answer)}
+              >
+                <span className="answer-letter">
+                  {String.fromCharCode(65 + index)}
+                </span>
+                <span>{answer}</span>
+                {state.selectedAnswer && answer === question.answer && (
+                  <FiCheck />
+                )}
+              </button>
+            ))}
+          </div>
+          <div className="answer-feedback" aria-live="polite">
+            {state.selectedAnswer ? (
+              <>
+                <strong>
+                  {isCorrect
+                    ? "Đúng rồi, em đã tìm ra!"
+                    : "Cùng đọc lại một chút nhé."}
+                </strong>
+                <p>{question.explanation}</p>
+              </>
+            ) : (
+              <p>Chọn câu trả lời em nghĩ là đúng. Mình sẽ cùng tìm hiểu.</p>
+            )}
+          </div>
           <button
-            className="btn btn-secondary align-items-center justify-content-center p-4"
-            style={{
-              maxHeight: "25vh",
-              maxWidth: "50vw",
-              borderRadius: "15pt",
-            }}
+            className="button primary next-button"
+            disabled={!state.selectedAnswer}
             onClick={() => {
-              const mySound = new Audio(question.audio);
-              mySound.play();
+              state.nextQuestion();
+              if (state.questionIndex === questions.length - 1)
+                navigate("/quiz/result");
             }}
           >
-            <FaVolumeUp className="align-self-center" size={"50%"} />
+            {state.questionIndex === questions.length - 1
+              ? "Xem kết quả"
+              : "Câu tiếp theo"}{" "}
+            <FiArrowRight />
           </button>
-        )}
-        <h5 className="mb-2 fs-3 lh-base">{question?.question}</h5>
-        <h5
-          className="fs-3"
-          style={{
-            color: "#60d600",
-            width: "100px",
-            textAlign: "right",
-          }}
-        >
-          {quizs.indexOf(question) + 1} / {quizs?.length}
-        </h5>
+        </section>
       </div>
-
-      <div className="d-flex vw-100 flex-wrap flex-grow-1 justify-content-evenly">
-        {question?.options?.map((item: any, index: any) => (
-          <button
-            key={index}
-            className={`${
-              correctAnswer === item && "bg-success"
-            } answer-wrapper bg-primary-app text-light fs-4 py-2 px-3 rounded align-self-stretch btn`}
-            onClick={(event) => checkAnswer(event, item)}
-          >
-            {item}
-          </button>
-        ))}
-      </div>
-
-      {questionIndex + 1 !== quizs.length ? (
-        <button
-          className="bg-primary-app text-light btn py-2 w-50 mt-3 fw-bold p-5"
-          onClick={nextQuestion}
-          disabled={!selectedAnswer}
-        >
-          Next Question
-        </button>
-      ) : (
-        <button
-          className="bg-primary-app text-light btn py-2 w-50 mt-3 fw-bold p-5"
-          onClick={() => navigate("../result", { relative: "route" })}
-          disabled={!selectedAnswer}
-        >
-          Show Result
-        </button>
-      )}
     </div>
   );
-};
-
-export default Quiz;
+}

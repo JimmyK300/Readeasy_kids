@@ -1,128 +1,101 @@
-import { createContext, useState, useEffect } from "react";
-
-const DataContext = createContext({});
-
-export const DataProvider = ({ children }: any) => {
-  // All Quizs, Current Question, Index of Current Question, Answer, Selected Answer, Total Marks
-  const [quizs, setQuizs] = useState([]);
-  const [question, setQuesion] = useState({}) as any;
+import { createContext, useContext, useState, type ReactNode } from "react";
+export const story = [
+  "Sáng chủ nhật, An ra vườn cùng bà.",
+  "An thấy một cây cà chua nhỏ.",
+  "Đất quanh cây đã khô.",
+  "An lấy bình nước và tưới nhẹ vào gốc cây.",
+  "Bà mỉm cười: “Cảm ơn An đã chăm sóc khu vườn.”",
+];
+export const questions = [
+  {
+    question: "An ra vườn cùng ai?",
+    options: ["Cùng bà", "Cùng bạn", "Cùng bố"],
+    answer: "Cùng bà",
+    explanation: "Câu đầu kể: “An ra vườn cùng bà.”",
+    line: 0,
+  },
+  {
+    question: "Vì sao An tưới nước cho cây?",
+    options: [
+      "Vì trời đang mưa",
+      "Vì đất quanh cây đã khô",
+      "Vì An muốn hái quả",
+    ],
+    answer: "Vì đất quanh cây đã khô",
+    explanation: "Đất đã khô. An tưới nước để chăm sóc cây.",
+    line: 2,
+  },
+  {
+    question: "An đã làm gì để chăm sóc khu vườn?",
+    options: ["Ngắt lá cây", "Chạy quanh vườn", "Tưới nhẹ vào gốc cây"],
+    answer: "Tưới nhẹ vào gốc cây",
+    explanation: "An lấy bình nước và tưới nhẹ vào gốc cây.",
+    line: 3,
+  },
+];
+interface LearningState {
+  questionIndex: number;
+  selectedAnswer: string;
+  answers: string[];
+  completed: boolean;
+  largeText: boolean;
+  spacedText: boolean;
+  chooseAnswer: (answer: string) => void;
+  nextQuestion: () => void;
+  startOver: () => void;
+  setLargeText: (value: boolean) => void;
+  setSpacedText: (value: boolean) => void;
+}
+const DataContext = createContext<LearningState | null>(null);
+export function DataProvider({ children }: { children: ReactNode }) {
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [correctAnswer, setCorrectAnswer] = useState("");
   const [selectedAnswer, setSelectedAnswer] = useState("");
-  const [marks, setMarks] = useState(0);
-  const [url, setUrl] = useState("");
-  const [title, setTitle] = useState("");
-
-  // Display Controlling States
-  const [showStart, setShowStart] = useState(false);
-  const [showQuiz, setShowQuiz] = useState(false);
-  const [showResult, setShowResult] = useState(false);
-
-  // Load JSON Data
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setQuizs(data));
-  }, [url]);
-
-  // Set a Single Question
-  useEffect(() => {
-    if (quizs.length > questionIndex) {
-      setQuesion(quizs[questionIndex]);
-    }
-  }, [quizs, questionIndex]);
-
-  const updateUrl = (newUrl: string) => {
-    setUrl(newUrl);
+  const [answers, setAnswers] = useState<string[]>([]);
+  const [completed, setCompleted] = useState(false);
+  const [largeText, setLargeText] = useState(false);
+  const [spacedText, setSpacedText] = useState(false);
+  const chooseAnswer = (answer: string) => {
+    if (selectedAnswer) return;
+    setSelectedAnswer(answer);
+    setAnswers((current) => [...current, answer]);
   };
-
-  // Start Quiz
-  const startQuiz = () => {
-    setShowStart(false);
-    setShowQuiz(true);
-  };
-
-  // Check Answer
-  const checkAnswer = (event: any, selected: any) => {
-    if (!selectedAnswer) {
-      setCorrectAnswer(question.answer);
-      setSelectedAnswer(selected);
-      // console.log(
-      //   selected,
-      //   question.answer,
-      //   selected === question.answer,
-      //   event.target.classList,
-      //   event
-      // );
-      if (selected === question.answer) {
-        event.target.classList = ["bg-success "].concat(event.target.classList);
-        // event.target.classList.prepend("bg-success ");
-        setMarks(marks + 5);
-      } else {
-        // event.target.classList.prepend("bg-danger ");
-        event.target.classList = ["bg-danger "].concat(event.target.classList);
-      }
-    }
-  };
-
-  // Next Quesion
   const nextQuestion = () => {
-    setCorrectAnswer("");
-    setSelectedAnswer("");
-    const wrongBtn = document.querySelector("button.bg-danger");
-    wrongBtn?.classList.remove("bg-danger");
-    const rightBtn = document.querySelector("button.bg-success");
-    rightBtn?.classList.remove("bg-success");
-    setQuestionIndex(questionIndex + 1);
+    if (!selectedAnswer) return;
+    if (questionIndex === questions.length - 1) setCompleted(true);
+    else {
+      setQuestionIndex((current) => current + 1);
+      setSelectedAnswer("");
+    }
   };
-
-  // Show Result
-  const showTheResult = () => {
-    setShowResult(true);
-    setShowStart(false);
-    setShowQuiz(false);
-  };
-
-  // Start Over
   const startOver = () => {
-    setShowStart(false);
-    setShowResult(false);
-    setShowQuiz(true);
-    setCorrectAnswer("");
-    setSelectedAnswer("");
     setQuestionIndex(0);
-    setMarks(0);
-    const wrongBtn = document.querySelector("button.bg-danger");
-    wrongBtn?.classList.remove("bg-danger");
-    const rightBtn = document.querySelector("button.bg-success");
-    rightBtn?.classList.remove("bg-success");
+    setSelectedAnswer("");
+    setAnswers([]);
+    setCompleted(false);
   };
   return (
     <DataContext.Provider
       value={{
-        startQuiz,
-        showStart,
-        showQuiz,
-        question,
-        quizs,
-        checkAnswer,
-        correctAnswer,
-        selectedAnswer,
         questionIndex,
+        selectedAnswer,
+        answers,
+        completed,
+        largeText,
+        spacedText,
+        chooseAnswer,
         nextQuestion,
-        showTheResult,
-        showResult,
-        marks,
         startOver,
-        url,
-        setUrl,
-        updateUrl,
-        title, setTitle
+        setLargeText,
+        setSpacedText,
       }}
     >
       {children}
     </DataContext.Provider>
   );
-};
-
+}
+export function useLearning() {
+  const context = useContext(DataContext);
+  if (!context) throw new Error("Learning provider is missing");
+  return context;
+}
 export default DataContext;

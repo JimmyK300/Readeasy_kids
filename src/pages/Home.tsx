@@ -1,97 +1,116 @@
+import { Link } from "react-router-dom";
+import {
+  FiArrowRight,
+  FiBookOpen,
+  FiCheck,
+  FiSliders,
+  FiSun,
+  FiHeart,
+} from "react-icons/fi";
+import { useLearning } from "../context/dataContext";
 import LessonList from "../components/LessonList";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { app } from "../Firebase/firebase";
-
-function Home() {
-  const navigate = useNavigate();
-  const [user, setUser] = useState(false);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(getAuth(app), (user) => {
-      console.log(user);
-      if (!user) {
-        navigate("/login");
-      }
-      setUser(!!user);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, [user, setUser, navigate]);
-
+export default function Home() {
+  const { completed } = useLearning();
   return (
-    <>
-      <div
-        className="d-flex flex-column p-4 align-items-center justify-content-around flex-grow-1"
-        style={{
-          minHeight: "100vh",
-          backgroundImage: "url('/images/bg.png')",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="cards-container">
-          <div className="cards align-items-center">
-            <div
-              className="d-flex flex-column justify-content-between align-items-center"
-              style={{ height: "100%" }}
-            >
-              <img src="images/giraffe.png" alt="Kiểm tra đánh giá" />
-              <h2>Kiểm tra đánh giá</h2>
-              <p>Các bạn cùng mình thực hiện bài kiểm tra đánh giá nhé!</p>
-              <button className="btn">Kiểm tra đánh giá</button>
-            </div>
-          </div>
-          <div className="cards align-items-center">
-            <div
-              className="d-flex flex-column justify-content-between align-items-center"
-              style={{ height: "100%" }}
-            >
-              <img src="images/fox.png" alt="Bài học đọc hiểu" />
-              <h2>Bài học đọc hiểu</h2>
-              <p>Các bài học thú vị và bổ ích đang chờ các bạn!</p>
-              <button className="btn" onClick={() => navigate("/lessons")}>
-                Bài học đọc hiểu
-              </button>
-            </div>
-          </div>
-          <div className="cards align-items-center">
-            <div
-              className="d-flex flex-column justify-content-between align-items-center"
-              style={{ height: "100%" }}
-            >
-              <img src="images/cat.png" alt="Chatbot hỗ trợ" />
-              <h2>Chatbot hỗ trợ</h2>
-              <p>Bạn có thắc mắc gì? Tớ sẽ giải đáp giúp bạn!</p>
-              <button className="btn">Chatbot hỗ trợ</button>
-            </div>
-          </div>
+    <div className="home-content">
+      <div className="page-heading">
+        <div>
+          <p className="welcome">
+            <FiSun /> Chào em, cùng đọc nhé!
+          </p>
+          <h1>
+            Mỗi trang sách,
+            <br className="mobile-break" /> một bước nhỏ.
+          </h1>
+          <p>Một góc học tập nhẹ nhàng, để em tự tin theo nhịp của mình.</p>
         </div>
-
-        <div className="age-selection text-light">
-          <h2>Lựa chọn bài học theo độ tuổi</h2>
-          <div className="age-buttons">
-            <button>
-              <div className="d-inline h-100 w-100">7</div>
-            </button>
-            <button>
-              <div className="d-inline h-100 w-100">8</div>
-            </button>
-            <button>
-              <div className="d-inline h-100 w-100">9</div>
-            </button>
-            <button>
-              <div className="d-inline h-100 w-100">10</div>
-            </button>
-          </div>
+        <div className="small-stamp">
+          <FiHeart />
+          <span>
+            Học theo nhịp
+            <br />
+            <strong>của riêng em</strong>
+          </span>
         </div>
       </div>
-    </>
+      <section className="hero-panel" aria-labelledby="hero-title">
+        <div className="hero-copy">
+          <span className="lesson-tag">Bài đọc hôm nay</span>
+          <h2 id="hero-title">
+            Một khu vườn nhỏ.
+            <br />
+            Một điều tốt đẹp.
+          </h2>
+          <p>
+            Cùng bạn Cáo đọc câu chuyện về An,
+            <br className="desktop-break" /> rồi khám phá những điều em hiểu.
+          </p>
+          <Link className="button primary" to="/quiz">
+            {completed ? "Đọc lại câu chuyện" : "Bắt đầu đọc"} <FiArrowRight />
+          </Link>
+          <span className="hero-meta">
+            <FiBookOpen /> 5 câu ngắn <span>•</span> 3 câu hỏi <span>•</span>{" "}
+            Khoảng 5 phút
+          </span>
+        </div>
+        <div className="hero-art" aria-hidden="true">
+          <span className="art-sun" />
+          <span className="speech-bubble">Tớ đọc cùng em!</span>
+          <div className="art-circle" />
+          <img src="/images/fox.png" alt="" />
+          <span className="art-leaf leaf-one" />
+          <span className="art-leaf leaf-two" />
+          <span className="art-star">✦</span>
+        </div>
+      </section>
+      <div className="content-columns">
+        <section className="lesson-section">
+          <div className="section-heading">
+            <div>
+              <h2>Hành trình đọc của em</h2>
+              <p>Bắt đầu từ một câu chuyện gần gũi.</p>
+            </div>
+            <Link to="/lessons" className="text-link">
+              Xem bài học <FiArrowRight />
+            </Link>
+          </div>
+          <LessonList />
+        </section>
+        <aside className="progress-panel">
+          <span className="progress-icon">
+            <FiCheck />
+          </span>
+          <h2>Một bước nhỏ hôm nay</h2>
+          <p>
+            {completed
+              ? "Em đã đi hết câu chuyện. Thật vui vì em đã dành thời gian học!"
+              : "Đọc hết câu chuyện và trả lời ba câu hỏi. Chúng ta cùng thử nhé."}
+          </p>
+          <div className="progress-track">
+            <div style={{ width: completed ? "100%" : "0%" }} />
+          </div>
+          <div className="progress-caption">
+            <span>Bài mẫu trong phiên này</span>
+            <strong>{completed ? "1 / 1" : "0 / 1"}</strong>
+          </div>
+          <div className="progress-note">
+            <FiSliders />
+            <span>Em có thể tăng cỡ chữ và giãn dòng khi đọc.</span>
+          </div>
+        </aside>
+      </div>
+      <section className="founder-note">
+        <FiHeart />
+        <div>
+          <h2>Được thiết kế cho nhiều cách học</h2>
+          <p>
+            ReadEasy Kids hướng tới một nền tảng học tiếng Việt lấy cảm hứng từ
+            mô hình Khan Academy, dành cho trẻ gặp khó khăn khi đọc, bao gồm trẻ
+            có chứng khó đọc. Đây là bản mẫu của dự án sáng lập; không liên kết
+            với Khan Academy và chưa được kiểm chứng lâm sàng.
+          </p>
+        </div>
+      </section>
+    </div>
   );
 }
-
-export default Home;
