@@ -9,8 +9,13 @@ import {
 } from "react-icons/fi";
 import { useLearning } from "../context/dataContext";
 import LessonList from "../components/LessonList";
+import { firstLesson, lessons } from "../content/lessons";
+import { useAccount } from "../context/authContext";
 export default function Home() {
-  const { completed } = useLearning();
+  const { progress } = useLearning();
+  const { user } = useAccount();
+  const count = Object.keys(progress).length;
+  const completed = !!progress[firstLesson.id];
   return (
     <div className="home-content">
       <div className="page-heading">
@@ -45,7 +50,7 @@ export default function Home() {
             Cùng bạn Cáo đọc câu chuyện về An,
             <br className="desktop-break" /> rồi khám phá những điều em hiểu.
           </p>
-          <Link className="button primary" to="/quiz">
+          <Link className="button primary" to={`/learn/${firstLesson.id}`}>
             {completed ? "Đọc lại câu chuyện" : "Bắt đầu đọc"} <FiArrowRight />
           </Link>
           <span className="hero-meta">
@@ -57,7 +62,7 @@ export default function Home() {
           <span className="art-sun" />
           <span className="speech-bubble">Tớ đọc cùng em!</span>
           <div className="art-circle" />
-          <img src="/images/fox.png" alt="" />
+          <img src={`${import.meta.env.BASE_URL}images/fox.png`} alt="" />
           <span className="art-leaf leaf-one" />
           <span className="art-leaf leaf-two" />
           <span className="art-star">✦</span>
@@ -74,7 +79,7 @@ export default function Home() {
               Xem bài học <FiArrowRight />
             </Link>
           </div>
-          <LessonList />
+          <LessonList items={lessons.slice(0, 2)} />
         </section>
         <aside className="progress-panel">
           <span className="progress-icon">
@@ -82,16 +87,18 @@ export default function Home() {
           </span>
           <h2>Một bước nhỏ hôm nay</h2>
           <p>
-            {completed
+            {count > 0
               ? "Em đã đi hết câu chuyện. Thật vui vì em đã dành thời gian học!"
               : "Đọc hết câu chuyện và trả lời ba câu hỏi. Chúng ta cùng thử nhé."}
           </p>
           <div className="progress-track">
-            <div style={{ width: completed ? "100%" : "0%" }} />
+            <div style={{ width: `${(count / lessons.length) * 100}%` }} />
           </div>
           <div className="progress-caption">
-            <span>Bài mẫu trong phiên này</span>
-            <strong>{completed ? "1 / 1" : "0 / 1"}</strong>
+            <span>{user ? "Bài đã hoàn thành" : "Bài trong phiên này"}</span>
+            <strong>
+              {count} / {lessons.length}
+            </strong>
           </div>
           <div className="progress-note">
             <FiSliders />

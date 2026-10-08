@@ -7,21 +7,31 @@ import Start from "./components/Start";
 import Quiz from "./components/Quiz";
 import Result from "./components/Result";
 import { DataProvider } from "./context/dataContext";
+import { AccountProvider } from "./context/authContext";
+import Account from "./pages/Account";
 export default function App() {
   return (
-    <DataProvider>
-      <HashRouter>
-        <Routes>
-          <Route element={<Navbar />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/lessons" element={<Lesson />} />
-            <Route path="/quiz" element={<Start />} />
-            <Route path="/quiz/quiz" element={<Quiz />} />
-            <Route path="/quiz/result" element={<Result />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Route>
-        </Routes>
-      </HashRouter>
-    </DataProvider>
+    <AccountProvider>
+      <DataProvider>
+        <HashRouter>
+          <Routes>
+            <Route element={<Navbar />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/lessons" element={<Lesson />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/signup" element={<Account mode="signup" />} />
+              <Route path="/login" element={<Account mode="login" />} />
+              <Route path="/learn/:lessonId" element={<Start />} />
+              <Route path="/learn/:lessonId/read" element={<Quiz />} />
+              <Route path="/learn/:lessonId/result" element={<Result />} />
+              <Route path="/quiz" element={<Start />} />
+              <Route path="/quiz/quiz" element={<Quiz />} />
+              <Route path="/quiz/result" element={<Result />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Route>
+          </Routes>
+        </HashRouter>
+      </DataProvider>
+    </AccountProvider>
   );
 }

@@ -1577,3 +1577,167 @@ h1 {
     scroll-behavior: auto !important;
   }
 }
+
+/* Lesson library and guardian account */
+.lesson-grid {
+  display: grid;
+  gap: 16px;
+}
+.library-content .lesson-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.lesson-symbol {
+  flex: 0 0 78px;
+  width: 78px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  font-size: 42px;
+  background: #ece7f9;
+  border-radius: 24px 12px;
+}
+.lesson-status {
+  display: block;
+  margin-top: 9px;
+  font-size: 12px;
+  color: #49348b;
+  font-weight: 800;
+}
+.level-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 14px;
+}
+.level-filters button {
+  border: 1px solid #d7cfea;
+  border-radius: 14px;
+  padding: 11px 18px;
+  background: white;
+  color: #49348b;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.level-filters button[aria-pressed="true"] {
+  background: #49348b;
+  color: white;
+}
+.library-count {
+  font-size: 14px;
+  color: #746b83;
+  margin-bottom: 20px;
+}
+.account-page {
+  max-width: 950px;
+}
+.account-intro {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-bottom: 26px;
+}
+.account-intro img {
+  width: 120px;
+}
+.account-intro h1 {
+  margin: 8px 0;
+}
+.account-panel {
+  background: white;
+  border: 1px solid #e5dfef;
+  border-radius: 26px;
+  padding: 32px;
+  max-width: 650px;
+}
+.account-panel form {
+  display: flex;
+  flex-direction: column;
+}
+.account-panel label {
+  font-weight: 800;
+  color: #49348b;
+  margin: 16px 0 8px;
+}
+.account-panel label span {
+  font-weight: 500;
+}
+.account-panel input {
+  border: 1px solid #ccc0e1;
+  border-radius: 12px;
+  padding: 14px;
+  font: inherit;
+  min-width: 0;
+  background: #fff;
+  color: #2c2640;
+}
+.account-panel input:focus {
+  outline: 3px solid #f5d970;
+  outline-offset: 2px;
+}
+.account-panel .button {
+  margin: 8px 8px 8px 0;
+}
+.account-panel .quiet-note {
+  line-height: 1.8;
+}
+.account-email {
+  overflow-wrap: anywhere;
+  font-weight: 800;
+}
+.form-error {
+  color: #79312b;
+  background: #fff3ed;
+  padding: 14px 18px;
+  border-radius: 12px;
+  line-height: 1.7;
+}
+.form-notice {
+  color: #285a45;
+  background: #eaf5ef;
+  padding: 14px 18px;
+  border-radius: 12px;
+  line-height: 1.7;
+}
+@media (max-width: 1100px) {
+  .library-content .lesson-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .sidebar nav {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .sidebar nav a {
+    font-size: 12px;
+    padding: 10px;
+  }
+  .lesson-symbol {
+    flex-basis: 58px;
+    width: 58px;
+    height: 72px;
+    font-size: 32px;
+  }
+  .account-intro {
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .account-intro img {
+    width: 62px;
+  }
+  .account-intro h1 {
+    font-size: 30px;
+  }
+  .account-panel {
+    padding: 22px;
+  }
+  .account-panel .button {
+    width: 100%;
+    margin-right: 0;
+  }
+  .session-label {
+    font-size: 12px;
+  }
+}

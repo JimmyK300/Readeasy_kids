@@ -1,4 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { findLesson, firstLesson } from "../content/lessons";
 import {
   FiArrowLeft,
   FiArrowRight,
@@ -8,8 +9,11 @@ import {
 } from "react-icons/fi";
 import { useLearning } from "../context/dataContext";
 export default function Start() {
-  const { startOver, answers, completed } = useLearning();
+  const { lessonId } = useParams();
+  const lesson = findLesson(lessonId ?? firstLesson.id);
+  const { startOver, answers, completed } = useLearning(lesson?.id);
   const navigate = useNavigate();
+  if (!lesson) return <Navigate to="/lessons" replace />;
   return (
     <div className="exercise-page">
       <Link to="/lessons" className="back-link">
@@ -17,20 +21,21 @@ export default function Start() {
       </Link>
       <section className="start-panel">
         <div className="start-art">
-          <img src="/images/fox.png" alt="Bạn Cáo đang đọc sách" />
+          <img
+            src={`${import.meta.env.BASE_URL}images/fox.png`}
+            alt="Bạn Cáo đang đọc sách"
+          />
         </div>
         <div>
-          <span className="lesson-tag">Đọc hiểu · Bài mẫu</span>
-          <h1>An và khu vườn</h1>
-          <p className="start-intro">
-            Một việc nhỏ có thể mang lại niềm vui.
-            <br />
-            Cùng đọc để tìm hiểu An đã làm gì nhé.
-          </p>
+          <span className="lesson-tag">
+            {lesson.level} · {lesson.topic}
+          </span>
+          <h1>{lesson.title}</h1>
+          <p className="start-intro">{lesson.summary}</p>
           <ul className="instruction-list">
             <li>
               <FiBookOpen />
-              <span>Đọc 5 câu ngắn theo nhịp của em.</span>
+              <span>Đọc {lesson.story.length} câu ngắn theo nhịp của em.</span>
             </li>
             <li>
               <FiSliders />
@@ -45,7 +50,7 @@ export default function Start() {
             className="button primary"
             onClick={() => {
               if (completed) startOver();
-              navigate("/quiz/quiz");
+              navigate(`/learn/${lesson.id}/read`);
             }}
           >
             {answers.length && !completed ? "Tiếp tục đọc" : "Cùng đọc nào"}{" "}
@@ -56,10 +61,10 @@ export default function Start() {
               className="restart-link"
               onClick={() => {
                 startOver();
-                navigate("/quiz/quiz");
+                navigate(`/learn/${lesson.id}/read`);
               }}
             >
-              Bắt đầu lại bài mẫu
+              Bắt đầu lại bài đọc
             </button>
           )}
           <p className="quiet-note">

@@ -1,8 +1,10 @@
 import { NavLink, Link, Outlet } from "react-router-dom";
-import { FiBookOpen, FiHome, FiHeart } from "react-icons/fi";
+import { FiBookOpen, FiHome, FiHeart, FiUser } from "react-icons/fi";
 import { useLearning } from "../context/dataContext";
+import { useAccount } from "../context/authContext";
 export default function Navbar() {
-  const { completed } = useLearning();
+  const { syncStatus } = useLearning();
+  const { user } = useAccount();
   return (
     <div className="app-shell">
       <a
@@ -32,9 +34,12 @@ export default function Navbar() {
           <NavLink to="/lessons">
             <FiBookOpen /> Bài học của em
           </NavLink>
+          <NavLink to={user ? "/account" : "/signup"}>
+            <FiUser /> {user ? "Tài khoản" : "Tạo tài khoản"}
+          </NavLink>
         </nav>
         <div className="sidebar-companion">
-          <img src="/images/cat.png" alt="" />
+          <img src={`${import.meta.env.BASE_URL}images/cat.png`} alt="" />
           <h3>
             Từng chút một,
             <br />
@@ -54,9 +59,11 @@ export default function Navbar() {
       <div className="workspace">
         <header className="topbar">
           <span className="demo-pill">
-            <span /> Chế độ trải nghiệm
+            <span /> {user ? "Đang học cùng tài khoản" : "Chế độ trải nghiệm"}
           </span>
-          <span className="session-label">Không cần tài khoản</span>
+          <Link className="session-label" to={user ? "/account" : "/login"}>
+            {user ? "Tài khoản gia đình" : "Đăng nhập"}
+          </Link>
           <Link
             className="session-avatar"
             to="/lessons"
@@ -71,9 +78,7 @@ export default function Navbar() {
         <footer className="page-footer">
           <span>ReadEasy Kids · Học đọc bằng tiếng Việt</span>
           <span>
-            {completed
-              ? "Đã hoàn thành bài mẫu trong phiên này"
-              : "Dữ liệu mẫu · Không lưu thông tin cá nhân"}
+            {user ? syncStatus : "Bài mẫu · Tiến độ chỉ trong phiên này"}
           </span>
         </footer>
       </div>

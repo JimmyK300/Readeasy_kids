@@ -1,26 +1,35 @@
 import { useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { FiArrowLeft, FiArrowRight, FiCheck, FiBookOpen } from "react-icons/fi";
-import { useLearning, questions, story } from "../context/dataContext";
+import { useLearning } from "../context/dataContext";
+import { findLesson, firstLesson } from "../content/lessons";
 export default function Quiz() {
-  const state = useLearning();
+  const { lessonId } = useParams();
+  const lesson = findLesson(lessonId ?? firstLesson.id);
+  const state = useLearning(lesson?.id);
+  const { questions, story } = state.lesson;
   const navigate = useNavigate();
   const questionRef = useRef<HTMLHeadingElement>(null);
   const question = questions[state.questionIndex];
   const isCorrect = state.selectedAnswer === question.answer;
   useEffect(() => {
     questionRef.current?.focus({ preventScroll: state.questionIndex === 0 });
-  }, [state.questionIndex]);
+  }, [state.questionIndex, lessonId]);
+  if (!lesson) return <Navigate to="/lessons" replace />;
+  if (state.completed)
+    return <Navigate to={`/learn/${lesson.id}/result`} replace />;
   return (
     <div className="exercise-page">
       <div className="exercise-top">
         <Link to="/lessons" className="back-link">
           <FiArrowLeft /> Bài học của em
         </Link>
-        <span className="lesson-type">Bài mẫu · Không giới hạn thời gian</span>
+        <span className="lesson-type">
+          {lesson.level} · Không giới hạn thời gian
+        </span>
       </div>
       <div className="exercise-title">
-        <h1>An và khu vườn</h1>
+        <h1>{lesson.title}</h1>
         <p>Đọc câu chuyện, rồi chọn một câu trả lời.</p>
       </div>
       <div className="reading-layout">
@@ -117,7 +126,7 @@ export default function Quiz() {
             onClick={() => {
               state.nextQuestion();
               if (state.questionIndex === questions.length - 1)
-                navigate("/quiz/result");
+                navigate(`/learn/${lesson.id}/result`);
             }}
           >
             {state.questionIndex === questions.length - 1
